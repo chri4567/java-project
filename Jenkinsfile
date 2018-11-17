@@ -1,4 +1,3 @@
-## Jenkins File
 pipeline {
   agent { label 'linux' }
     stages {
