@@ -1,6 +1,7 @@
 pipeline {
   agent { label 'linux' }
     stages {
+	    
       stage ("Unit Tests") {
 	    steps {
 	      sh "ant -f test.xml -v"
@@ -12,14 +13,16 @@ pipeline {
 	      sh "ant -f build.xml -v"
 	    }
 	}
-	    stage ("Deploy") {
+
+	stage ("Deploy") {
 	    steps {
 	      sh "aws s3 cp /workspace/java-pipeline/dist/rectangle-*.jar s3://assignment9-chri4567/"
 	    }
 	}
-	    stage ("Report") {
+
+	stage ("Report") {
 	    steps {
-	       sh "aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins"
+	       sh "aws cloudformation describe-stack-resources --stack-name jenkins --region us-east-1"
 	    }
 	}
     }
