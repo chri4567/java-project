@@ -17,11 +17,5 @@ pipeline {
 	      sh "ant -f build.xml -v"
 	    }
 	}
-
-	stage ("Report") {
-	    steps {
-	      // sh "aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins"
-	    }
-	}
     }
 }
